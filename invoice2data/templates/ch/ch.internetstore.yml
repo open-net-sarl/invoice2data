@@ -1,0 +1,23 @@
+issuer: Internet Onlineshop AG
+keywords:
+  - www.internetstore.ch
+  - Facture
+fields:
+  amount: Total TTC\s+(\d+.\d{2})
+  amount_tax: TVA\s+à\s+\d.\d\d%\s+(\d+.\d{2})
+  date: Date\s*:\s*(\d{2}.\d{2}.\d{4})
+  invoice_number: (?<!Paiement\s:\s)Facture\s*(\d+)
+  partner_website: (www\.internetstore\.ch)
+  iban: IBAN:\s*(\w{4}\s*\w{4}\s*\w{4}\s*\w{4}\s*\w{4}\s*\w{1})
+lines:
+  start: N°\s+Réf. Art.\s+Désignation\s+Quantité\s+Prix Unit.\s+Total CHF
+  end: Total net
+  first_line: ^\s+\d+\s+(?P<reference>\S+)\s+(?P<desc>.+?)\s{2,}(?P<qty>\d+)\s+(?P<unit_price>\d+.\d{2})\s+(?P<price>\d+.\d{2})
+  line: ^\s+(?P<desc>.+?)$
+options:
+  currency: CHF
+  date_formats:
+    - '%d.%m.%Y'
+  languages:
+    - fr
+decimal_separator: '.'
